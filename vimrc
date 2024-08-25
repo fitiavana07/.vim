@@ -1,32 +1,13 @@
 " This file is intended to be supported from Vimrc-supporting softwares,
 " which may include Vim 8, Vim 9, IdeaVim, NeoVim.
 " Currently tested with Vim 9.0 and IdeaVim.
-" TODO
-" more about registers
-" more about 'vim:' (modeline)
-" map double space to ctrl-d
-" map shift double space to ctrl-u
-" more about Ex-mode
-" viminfo
-"
+
 " for now: ALE works well for JS/TS/React but slow at fixing with prettier
 " it works for linting java without installing an lsp. javalsp seems to not
 " work, no hover, no go to def
-"
-
-" use if (v:version >= 800) to check for vim version, for available features
-
-" ilay disk dur mbola tsy nampiasaina - copieo direct am ordi aloha ho rapide
-" for colemak, see :h keymap
-" for filetype specific things:au FileType c,cpp,java set mps+==:;
-"
-" tip: can use :TOhtml for generating html page from syntax-colored file
 
 " the leader key
 let mapleader = " "
-
-" reload automatically after save
-" autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
 " enable file type detection, plugin, and indent
 filetype plugin indent on
@@ -274,7 +255,13 @@ let g:ale_fixers = {
       \}
 
 let g:ale_completion_enabled = 1
-let g:ale_java_javalsp_executable = '/home/fitiavana/.vim/lib/java-language-server/dist/launch_linux.sh'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Others
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 set foldlevel=1
 set history=500
@@ -305,18 +292,3 @@ function! s:RunShellCommand(cmdline)
 endfunction
 
 command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
-
-" TODO can use %:p:h for opening files in the same directory
-" e.g: e %:p:h <TAB>
-" from spf13vim
-" cmap cwd lcd %:p:h
-" cmap cd. lcd %:p:h
-
-" removed - often used accidentally
-" moving lines using CTRL+[jk], normal and visual modes
-" nnoremap <C-j> mz:m+<cr>`z
-" nnoremap <C-k> mz:m-2<cr>`z
-" vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-" vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-
