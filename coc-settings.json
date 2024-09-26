@@ -1,0 +1,5 @@
+{
+  "[typescriptreact][typescript][json][rust]": {
+    "coc.preferences.formatOnSave": true
+  }
+}
