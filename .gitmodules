@@ -1,0 +1,3 @@
+[submodule "pack/testing/opt/gruvbox"]
+	path = pack/testing/opt/gruvbox
+	url = git@codeberg.org:fitiavana/gruvbox.git
