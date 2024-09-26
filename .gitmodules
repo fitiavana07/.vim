@@ -1,3 +1,7 @@
 [submodule "pack/testing/opt/gruvbox"]
 	path = pack/testing/opt/gruvbox
 	url = git@codeberg.org:fitiavana/gruvbox.git
+[submodule "pack/testing/opt/coc.nvim"]
+	path = pack/testing/opt/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release
