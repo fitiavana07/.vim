@@ -44,6 +44,10 @@ set softtabstop=2 " delete indentations by 2 spaces
 set autoindent   " copy the previous line indentation
 set smartindent  " smarter indentation, based on {} or keywords like 'if'
 
+" Highlight problematic whitespace
+set list listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Behaviour
 "
@@ -106,7 +110,12 @@ set splitright splitbelow
 set incsearch hlsearch
 set ignorecase smartcase
 set nowrapscan
-set grepprg=grep\ -n\ -i\ -R\ $*\ --exclude-dir=classes\ --exclude-dir=.git\ --exclude-dir=node_modules\ --exclude-dir=target\ .\ /dev/null
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case
+  "e.g for excluding     set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --glob\ '!.git/'\ --glob\ '!node_modules/*'
+else
+  set grepprg=grep\ -n\ -i\ -R\ $*\ --exclude-dir=classes\ --exclude-dir=.git\ --exclude-dir=node_modules\ --exclude-dir=target\ .\ /dev/null
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,7 +220,7 @@ nnoremap <Leader>vr :botright sp ~/.vim/vimrc<cr>
 " Allow searching files in deep directories using :find and :tabfind
 set path=**
 
-set wildignore+=*.class,*/classes/**,*/node_modules/**,*/.git/*,*/target/**
+set wildignore+=*.class,*/classes/**,*/node_modules/**,*/.git/*,*/target/**,*/dist/**
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable some shipped plugins
@@ -252,19 +261,30 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \  'typescriptreact': ['eslint', 'prettier'],
       \  'typescript': ['prettier', 'tsserver'],
+      \  'html': ['html-beautify']
       \}
 
 let g:ale_completion_enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Others
+" Testing - Others
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 set foldlevel=1
 set history=500
+
+nnoremap <Leader>gg :G<CR>
+nnoremap <Leader>tc <C-w>:ter ++curwin<cr>
+
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap <Leader>vf :vert sfind<Space>
+nnoremap <Leader>sf :sfind<Space>
+
+nnoremap <Leader>ta :tab term<CR>
+tnoremap <Leader>ta <C-w>:tab term<CR>
+
+nnoremap <Leader>bb :b<Space>
+nnoremap <Leader>g<Space> :G<Space>
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to.
@@ -290,5 +310,14 @@ function! s:RunShellCommand(cmdline)
     setlocal nomodifiable
     1
 endfunction
-
 command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
+
+" Allow to trigger background
+function! ToggleBG()
+    if &background == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+nnoremap <leader>sb :call ToggleBG()<CR>
