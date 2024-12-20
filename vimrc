@@ -241,7 +241,7 @@ set showtabline=2
 
 let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_invert_tabline = 1
-autocmd vimenter * ++nested colorscheme gruvbox | set background=light
+autocmd vimenter * ++nested colorscheme gruvbox | set background=dark
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Testing
@@ -270,7 +270,7 @@ let g:ale_completion_enabled = 1
 " Testing - Others
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set foldlevel=1
+set foldlevel=0
 set history=500
 
 nnoremap <Leader>gg :G<CR>
@@ -280,8 +280,8 @@ nnoremap gd :ALEGoToDefinition<CR>
 nnoremap <Leader>vf :vert sfind<Space>
 nnoremap <Leader>sf :sfind<Space>
 
-nnoremap <Leader>ta :tab term<CR>
-tnoremap <Leader>ta <C-w>:tab term<CR>
+nnoremap <Leader>tb :tab term<CR>
+tnoremap <Leader>tb <C-w>:tab term<CR>
 
 nnoremap <Leader>bb :b<Space>
 nnoremap <Leader>g<Space> :G<Space>
@@ -321,3 +321,28 @@ function! ToggleBG()
     endif
 endfunction
 nnoremap <leader>sb :call ToggleBG()<CR>
+
+packadd coc.nvim
+
+" For coc.nvim
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+nnoremap <Leader>fe :NERDTreeToggle<CR>
+" Start NERDTree when Vim is started without file arguments.
+"
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
