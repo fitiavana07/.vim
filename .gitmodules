@@ -5,3 +5,6 @@
 	path = pack/testing/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
+[submodule "pack/testing/start/vim-snipmate"]
+	path = pack/testing/start/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
