@@ -11,3 +11,6 @@
 [submodule "pack/testing/start/vim-addon-mw-utils"]
 	path = pack/testing/start/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "pack/testing/start/nerdtree"]
+	path = pack/testing/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
