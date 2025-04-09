@@ -324,6 +324,11 @@ nnoremap <leader>sb :call ToggleBG()<CR>
 
 packadd coc.nvim
 
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " For coc.nvim
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
