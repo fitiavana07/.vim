@@ -8,3 +8,6 @@
 [submodule "pack/testing/start/vim-snipmate"]
 	path = pack/testing/start/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
+[submodule "pack/testing/start/vim-addon-mw-utils"]
+	path = pack/testing/start/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
