@@ -351,3 +351,14 @@ nnoremap <Leader>fe :NERDTreeToggle<CR>
 "
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+let g:coc_global_extensions = [
+      \ 'coc-eslint',
+      \ 'coc-git',
+      \ 'coc-go',
+      \ 'coc-json',
+      \ 'coc-rust-analyzer',
+      \ 'coc-snippets',
+      \ 'coc-tsserver',
+      \ 'coc-solargraph',
+      \ ]
