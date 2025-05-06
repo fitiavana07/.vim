@@ -180,8 +180,8 @@ nnoremap <Leader>vs :vs<CR>
 
 
 " Scroll
-nnoremap <Leader>j <C-d>
-nnoremap <Leader>k <C-u>
+nnoremap <Tab> <C-d>
+nnoremap <BS> <C-u>
 
 
 " Quickfix window
@@ -269,6 +269,8 @@ let g:ale_completion_enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Testing - Others
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 set foldlevel=0
 set history=500
