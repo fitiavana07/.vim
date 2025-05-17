@@ -348,9 +348,11 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+nmap <silent><nowait> gd <Plug>(coc-definition)
+
 nnoremap <Leader>fe :NERDTreeToggle<CR>
+
 " Start NERDTree when Vim is started without file arguments.
-"
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
