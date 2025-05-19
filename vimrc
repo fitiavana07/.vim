@@ -278,7 +278,6 @@ set history=500
 nnoremap <Leader>gg :G<CR>
 nnoremap <Leader>tc <C-w>:ter ++curwin<cr>
 
-nnoremap gd :ALEGoToDefinition<CR>
 nnoremap <Leader>vf :vert sfind<Space>
 nnoremap <Leader>sf :sfind<Space>
 
