@@ -349,6 +349,15 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 
 nmap <silent><nowait> gd <Plug>(coc-definition)
 
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
 nnoremap <Leader>fe :NERDTreeToggle<CR>
 
 " Start NERDTree when Vim is started without file arguments.
