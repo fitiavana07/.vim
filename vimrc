@@ -358,6 +358,10 @@ function! ShowDocumentation()
   endif
 endfunction
 
+nmap <Leader>db <Plug>VimspectorBreakpoints
+let g:vimspector_enable_mappings = 'HUMAN'
+nmap <F1> :CocCommand java.debug.vimspector.start<CR>
+
 nnoremap <Leader>fe :NERDTreeToggle<CR>
 
 " Start NERDTree when Vim is started without file arguments.
@@ -369,6 +373,7 @@ let g:coc_global_extensions = [
       \ 'coc-git',
       \ 'coc-go',
       \ 'coc-java',
+      \ 'coc-java-debug',
       \ 'coc-json',
       \ 'coc-prettier',
       \ 'coc-pyright',
