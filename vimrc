@@ -348,6 +348,8 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent><nowait> gd <Plug>(coc-definition)
+nmap <silent><nowait> gr <Plug>(coc-references)
+nmap <silent><nowait> gi <Plug>(coc-implementation)
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 function! ShowDocumentation()
