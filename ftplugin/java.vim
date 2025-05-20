@@ -3,6 +3,6 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldlevel=1
 
-let b:undo_ftplugin = "setlocal expandtab< tabstop< shiftwidth< softtabstop< "
+let b:undo_ftplugin = "setlocal expandtab< tabstop< shiftwidth< softtabstop< foldlevel<"
