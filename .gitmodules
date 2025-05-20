@@ -23,3 +23,6 @@
 [submodule "pack/testing/start/fugitive"]
 	path = pack/testing/start/fugitive
 	url = https://tpope.io/vim/fugitive.git
+[submodule "pack/testing/start/vimspector"]
+	path = pack/testing/start/vimspector
+	url = https://github.com/puremourning/vimspector
