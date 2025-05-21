@@ -1,62 +1,69 @@
-" This file is intended to be supported from Vimrc-supporting softwares,
-" which may include Vim 8, Vim 9, IdeaVim, NeoVim.
-" Currently tested with Vim 9.0 and IdeaVim.
+" SPDX-License-Identifier: Apache-2.0
 
-" for now: ALE works well for JS/TS/React but slow at fixing with prettier
-" it works for linting java without installing an lsp. javalsp seems to not
-" work, no hover, no go to def
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fitiavana07's vimrc
+"
+" Copyright © 2025 Fitiavana Ramanandafy. All Rights Reserved.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" the leader key
+" Use SPACE as leader key
 let mapleader = " "
 
-" enable file type detection, plugin, and indent
+" enable file type detection, filetype plugins, and filetype-specific indent
 filetype plugin indent on
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Editor
-"
-" - quick file overview on file open
-"   - folded with syntax method, for quick file overview
-" - encourages short lines
-"   - lines not wrapped, for best practice of short lines, highlighted at 80
-" - no line number by default
-" - use 2 spaces for tabs
-" - scroll offset set to 2
-" - Go to the last position when reopening a file
-" - Automatic indentation
+" Buffer display configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Enable syntax highlighting
 syntax enable
 
-set foldmethod=syntax
-set nowrap textwidth=79 colorcolumn=+1
-set cursorline
-set scrolloff=2
-set scrolljump=3
+" Disable line numbers, so we have more space
+set nonumber
 
-" Tabs
+" Enable folding, with syntax method by default
+" This way, we get a quick overview of the file on open
+set foldmethod=syntax
+
+" Folds to the top-level. Per-filetype configuration are set in ftplugin
+set foldlevel=0
+
+" Easily locate on which line you are, by highlighting the line
+set cursorline
+
+" Keep 2 lines above and below the cursor, so we always have some context.
+set scrolloff=2
+
+" Highlight problematic whitespaces
+set list listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Editor edit mode configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use 2 spaces for tabs and indentations
 set expandtab     " use spaces instead of tabs when writing
 set tabstop=2     " display tabs as 2 spaces
 set shiftwidth=2  " use 2 spaces for auto-indent
 set softtabstop=2 " delete indentations by 2 spaces
 " TODO what does 'smarttab' do?
 
+" Encourages writing line shorter than 80 characters by:
+" - breaking line automatically after 79th character
+" - highlight a column to indicate line limit
+" - disabling text wrap on display so text wider than the screen is hidden
+set textwidth=79 colorcolumn=+1 nowrap
+
+" Automatic indentation
 set autoindent   " copy the previous line indentation
 set smartindent  " smarter indentation, based on {} or keywords like 'if'
 
-" Highlight problematic whitespace
-set list listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Behaviour
-"
-" - Clear trailing white spaces on save
-" - Go to the last position when reopening a file
-" - Don't make backup nor swap file. We use git for it
-" - Set to auto read when changed externally. See :h checktime
-"
-" Persistent undo has been disabled because is sometimes very slow
+" On save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Clear trailing white spaces on save
@@ -69,22 +76,37 @@ fun! CleanExtraSpaces()
 endfun
 au BufWritePre * :call CleanExtraSpaces()
 
-" Go to the last position when reopening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" Don't make backup nor swap file. We use git to do the job
-set nobackup nowritebackup noswapfile
-
-" Set to auto read when a file is changed from the outside. See :h checktime
+" Automatically re-read the file when changed from the outside
 set autoread
 au FocusGained,BufEnter * silent! checktime
 
-" Allow switching buffer without saving
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" On open
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Go to the last position when reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+                  \ | exe "normal! g'\"" | endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Buffer-related configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Allow switching buffer without saving before switching
 set hidden
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Specific to gitcommit filetype
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Instead of reverting the cursor to the last position in the buffer, we
 " set it to the first line when editing a git commit message
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG
+                  \ call setpos('.', [0, 1, 1, 0])
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status Line and Ruler
@@ -92,30 +114,97 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 set showcmd        " show (partial) command in the last line of the screen
 set laststatus=2   " always show the status line
-" from spf13-vim
-set rulerformat=%30(%=\b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+" a ruler format from spf13-vim
+set rulerformat=%30(%=\b%n%y%m%r%w\ %l,%c%V\ %P%)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Windows
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Open new split windows in right and below instead of left and top
 set splitright splitbelow
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search
+" In-buffer Search
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set incsearch hlsearch
+" Enable incremental search
+set incsearch
+
+" Highlight all matches
+set hlsearch
+
+" Ignore case on search, unless the pattern contains an upper case character
 set ignorecase smartcase
+
+" Don't start again from top after bottom is reached
 set nowrapscan
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Global search
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" use ripgrep if it is installed
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
-  "e.g for excluding     set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --glob\ '!.git/'\ --glob\ '!node_modules/*'
+  "e.g for excluding     set grepprg=rg\ --vimgrep\ --no-heading\
+  "                \ --smart-case\ --glob\ '!.git/'\ --glob\ '!node_modules/*'
 else
-  set grepprg=grep\ -n\ -i\ -R\ $*\ --exclude-dir=classes\ --exclude-dir=.git\ --exclude-dir=node_modules\ --exclude-dir=target\ .\ /dev/null
+  set grepprg=grep\ -n\ -i\ -R\ $*\ --exclude-dir=classes\ --exclude-dir=.git\
+              \ --exclude-dir=node_modules\ --exclude-dir=target\ .\ /dev/null
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Finding files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Allow searching files in deep directories using :find and :tabfind
+set path=**
+
+" Ignored directories when expanding wildcards
+set wildignore+=*.class,*/classes/**,*/node_modules/**,*/.git/*,*/target/**,*/dist/**
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Disable some shipped plugins that are unused
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:loaded_getscriptPlugin = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_logiPat = 1
+let g:loaded_vimballPlugin = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Others
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Larger command history size
+set history=500
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Behaviour
+"
+" - Don't make backup nor swap file. We use git for it
+" - Set to auto read when changed externally. See :h checktime
+"
+" Persistent undo has been disabled because is sometimes very slow
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" For coc.nvim support
+" Don't make backup nor swap file. We use git to do the job
+set nobackup nowritebackup noswapfile
+
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -210,27 +299,6 @@ nnoremap <silent> <Leader><BS> :nohl<CR>
 nnoremap <Leader>vr :botright sp ~/.vim/vimrc<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Find file
-"
-" - :find, :tabfind, :sfind
-"   - ignore build files and directories, and .git directory
-"   - searches recursively in child directories
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Allow searching files in deep directories using :find and :tabfind
-set path=**
-
-set wildignore+=*.class,*/classes/**,*/node_modules/**,*/.git/*,*/target/**,*/dist/**
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable some shipped plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:loaded_getscriptPlugin = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_logiPat = 1
-let g:loaded_vimballPlugin = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -271,9 +339,6 @@ let g:ale_completion_enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
-set foldlevel=0
-set history=500
 
 nnoremap <Leader>gg :G<CR>
 nnoremap <Leader>tc <C-w>:ter ++curwin<cr>

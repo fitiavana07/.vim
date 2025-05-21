@@ -1,6 +1,7 @@
 # vim07
 
-My Vim configuration. Aimed to be a fully featured IDE. With keybindings focused on preventing Emacs pinky.
+My Vim configuration. Aimed to be a fully featured IDE. With keybindings
+focused on preventing pinky pain.
 
 ## How to a add a package
 
