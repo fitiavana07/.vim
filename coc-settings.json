@@ -1,5 +1,6 @@
 {
   "[typescriptreact][typescript][json][rust][go][python]": {
     "coc.preferences.formatOnSave": true
-  }
+  },
+  "java.compile.nullAnalysis.mode": "automatic"
 }
