@@ -185,6 +185,13 @@ let g:loaded_vimballPlugin = 1
 " Larger command history size
 set history=500
 
+" enhanced command-line completion
+set wildmenu wildoptions=pum
+
+" Always show tab page labels line, so we have consistent display
+set showtabline=2
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -230,10 +237,6 @@ tnoremap <Leader>wl <C-w><C-l>
 
 
 " Tabs, for normal and terminal mode
-" <Leader>tt    next tab
-" <Leader>tp    previous tab
-" <Leader>tn    create a new tab
-
 nnoremap <silent> <Leader>tt gt
 tnoremap <silent> <Leader>tt <C-w>gt
 
@@ -302,37 +305,10 @@ nnoremap <Leader>vr :botright sp ~/.vim/vimrc<cr>
 " Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set wildmenu wildoptions=pum
-
-" Always show tab page labels
-set showtabline=2
-
+" use gruvbox colorscheme with dark mode
 let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_invert_tabline = 1
 autocmd vimenter * ++nested colorscheme gruvbox | set background=dark
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Testing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Javascript / Typescript / React support
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" This is too slow
-" let g:ale_fix_on_save = 1
-
-let g:ale_linters = {
-      \  'typescriptreact': ['eslint', 'tsserver'],
-      \  'typescript': ['eslint', 'tsserver'],
-      \}
-let g:ale_fixers = {
-      \  'typescriptreact': ['eslint', 'prettier'],
-      \  'typescript': ['prettier', 'tsserver'],
-      \  'html': ['html-beautify']
-      \}
-
-let g:ale_completion_enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Testing - Others
