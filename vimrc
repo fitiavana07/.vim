@@ -14,80 +14,12 @@ filetype plugin indent on
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Buffer display configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Enable syntax highlighting
-syntax enable
-
-" Disable line numbers, so we have more space
-set nonumber
-
-" Enable folding, with syntax method by default
-" This way, we get a quick overview of the file on open
-set foldmethod=syntax
-
-" Folds to the top-level. Per-filetype configuration are set in ftplugin
-set foldlevel=0
-
-" Easily locate on which line you are, by highlighting the line
-set cursorline
-
-" Keep 2 lines above and below the cursor, so we always have some context.
-set scrolloff=2
-
-" Highlight problematic whitespaces
-set list listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Editor edit mode configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Use 2 spaces for tabs and indentations
-set expandtab     " use spaces instead of tabs when writing
-set tabstop=2     " display tabs as 2 spaces
-set shiftwidth=2  " use 2 spaces for auto-indent
-set softtabstop=2 " delete indentations by 2 spaces
-" TODO what does 'smarttab' do?
-
-" Encourages writing line shorter than 80 characters by:
-" - breaking line automatically after 79th character
-" - highlight a column to indicate line limit
-" - disabling text wrap on display so text wider than the screen is hidden
-set textwidth=79 colorcolumn=+1 nowrap
-
-" Automatic indentation
-set autoindent   " copy the previous line indentation
-set smartindent  " smarter indentation, based on {} or keywords like 'if'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " On save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Clear trailing white spaces on save
-fun! CleanExtraSpaces()
-  let save_cursor = getpos(".")
-  let old_query = getreg('/')
-  silent! %s/\s\+$//e
-  call setpos('.', save_cursor)
-  call setreg('/', old_query)
-endfun
-au BufWritePre * :call CleanExtraSpaces()
 
 " Automatically re-read the file when changed from the outside
 set autoread
 au FocusGained,BufEnter * silent! checktime
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" On open
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Go to the last position when reopening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
-                  \ | exe "normal! g'\"" | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -327,6 +259,10 @@ tnoremap <Leader>tb <C-w>:tab term<CR>
 
 nnoremap <Leader>bb :b<Space>
 nnoremap <Leader>g<Space> :G<Space>
+
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+nmap gs <Plug>(coc-git-chunkinfo)
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to.
