@@ -1,9 +1,9 @@
 " SPDX-License-Identifier: Apache-2.0
+" Copyright © 2025 Fitiavana Ramanandafy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remember last position in file
-"
-" Copyright © 2025 Fitiavana Ramanandafy. All Rights Reserved.
+" Description: Remember last position in file
+" Last Change:  2025-05-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Go to the last position when reopening a file

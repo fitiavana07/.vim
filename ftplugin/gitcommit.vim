@@ -1,3 +1,11 @@
+" SPDX-License-Identifier: Apache-2.0
+" Copyright © 2025 Fitiavana Ramanandafy
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Language:         gitcommit filetype plugin
+" Last Change:      2025-05-26
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 if exists("b:did_ftplugin")
   finish
 endif

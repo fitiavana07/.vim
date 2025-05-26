@@ -1,9 +1,9 @@
 " SPDX-License-Identifier: Apache-2.0
+" Copyright © 2025 Fitiavana Ramanandafy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Buffer display configuration
-"
-" Copyright © 2025 Fitiavana Ramanandafy. All Rights Reserved.
+" Description:    Buffer display configuration
+" Last Change:    2025-05-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting

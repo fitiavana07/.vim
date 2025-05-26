@@ -1,9 +1,8 @@
 " SPDX-License-Identifier: Apache-2.0
+" Copyright © 2025 Fitiavana Ramanandafy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fitiavana07's vimrc
-"
-" Copyright © 2025 Fitiavana Ramanandafy. All Rights Reserved.
+" Main vimrc file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use SPACE as leader key

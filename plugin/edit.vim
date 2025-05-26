@@ -1,9 +1,9 @@
 " SPDX-License-Identifier: Apache-2.0
+" Copyright © 2025 Fitiavana Ramanandafy
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Editor edit mode configuration
-"
-" Copyright © 2025 Fitiavana Ramanandafy. All Rights Reserved.
+" Description:  Editor edit mode configuration
+" Last Change:  2025-05-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use 2 spaces for tabs and indentations
