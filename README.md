@@ -44,3 +44,7 @@ Inside vim
 :helptags pack/testing/start/vim-snipmate/doc/
 :helptags ALL
 ```
+
+## License
+
+Apache 2.0. See [LICENSE](./LICENSE) file.
