@@ -347,6 +347,10 @@ nnoremap <Leader>fe :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
+" Hide 'target' directory in NERDTree by default (e.g. for Rust).
+" We can use 'f' (filter) in NERDTree window to show them temporarily.
+let NERDTreeIgnore = ['^target$']
+
 let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-git',
