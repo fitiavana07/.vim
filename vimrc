@@ -180,8 +180,8 @@ tnoremap <silent> <Leader>tn <C-w>:tabnew<CR>
 
 " Terminals, for normal and terminal mode
 " <Leader>te    open new term
-nnoremap <Leader>te <C-w>:ter<cr>
-tnoremap <Leader>te <C-w>:ter<cr>
+nnoremap <Leader>tr <C-w>:ter<cr>
+tnoremap <Leader>tr <C-w>:ter<cr>
 
 
 " Edit/find a file
