@@ -2,6 +2,7 @@
   "[typescriptreact][typescript][json][rust][go][python]": {
     "coc.preferences.formatOnSave": true
   },
+  "inlayHint.enable": false,
   "typescript.format.enable": false,
   "java.compile.nullAnalysis.mode": "automatic"
 }
