@@ -26,3 +26,6 @@
 [submodule "pack/testing/start/vimspector"]
 	path = pack/testing/start/vimspector
 	url = https://github.com/puremourning/vimspector
+[submodule "pack/testing/start/vim-graphql"]
+	path = pack/testing/start/vim-graphql
+	url = https://github.com/jparise/vim-graphql.git
