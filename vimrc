@@ -342,6 +342,7 @@ let g:vimspector_enable_mappings = 'HUMAN'
 nmap <F1> :CocCommand java.debug.vimspector.start<CR>
 
 nnoremap <Leader>fe :NERDTreeToggle<CR>
+nnoremap <Leader>fo :NERDTreeFind<CR>
 
 " Start NERDTree when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
