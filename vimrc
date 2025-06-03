@@ -374,3 +374,10 @@ nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(
 nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
 inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
+
+" 'buffer only': close all buffers except this one
+" https://stackoverflow.com/a/42071865, explains:
+"   %bd = delete all buffers.
+"   e# = open the last buffer for editing.
+"   The pipe in between just does one command after another
+nnoremap <Leader>bo :%bd\|e#\|bd#<CR>
