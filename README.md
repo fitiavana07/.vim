@@ -34,6 +34,8 @@ vim -c "helptags pack/testing/opt/coc.nvim/doc/ | q"
 
 ```bash
 git pull --recurse
+# or try
+git submodule update --remote
 ```
 
 ### Generate helptags for one package
