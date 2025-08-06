@@ -166,6 +166,13 @@ tnoremap <Leader>wk <C-w><C-k>
 nnoremap <Leader>wl <C-w><C-l>
 tnoremap <Leader>wl <C-w><C-l>
 
+" Moving windows
+" See :h window-moving
+nnoremap <Leader>wH <C-w>H
+nnoremap <Leader>wJ <C-w>J
+nnoremap <Leader>wK <C-w>K
+nnoremap <Leader>wL <C-w>L
+
 
 " Tabs, for normal and terminal mode
 nnoremap <silent> <Leader>tt gt
@@ -381,3 +388,9 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 "   e# = open the last buffer for editing.
 "   The pipe in between just does one command after another
 nnoremap <Leader>bo :%bd\|e#\|bd#<CR>
+
+nmap <Leader>a  <Plug>(coc-codeaction-selected)
+xmap <Leader>a  <Plug>(coc-codeaction-selected)
+
+nnoremap <Leader>gs :CocCommand git.chunkStage<CR>
+nnoremap <Leader>gu :CocCommand git.chunkUnstage<CR>
